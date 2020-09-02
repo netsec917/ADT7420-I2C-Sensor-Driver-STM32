@@ -64,7 +64,7 @@ void read_adt7420(void)
 	sprintf(str_buf, "Temp: %dC\n\r", (int)temperature);
 	sprintf(lcd_buf, "Temp: %dC", (int)temperature);
 	usart_log_temperature(str_buf);
-	hd44780u_display_home(&display);
+	hd44780u_display_clear(&display);
 	hd44780u_put_str(&display, lcd_buf, strlen(lcd_buf));
 }
 

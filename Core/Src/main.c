@@ -95,6 +95,11 @@ int main(void)
   MX_USART2_UART_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+  while (1)
+  {
+	  usart_log_temperature("h tersf di\n\r");
+	  LL_mDelay(5);
+  }
   sys_init();
   /* USER CODE END 2 */
 

@@ -218,12 +218,12 @@ Adt7420_status adt7420_init(adt7420_dev* dev, adt7420_settings* params)
 Adt7420_status adt7420_on(adt7420_dev* dev)
 {
 	uint8_t config;
-	if (adt7420_read_one_reg(dev, ADT7420_CONFIG, &config) != ADT7420_OK) {
+	if (adt7420_get_config(dev, &config) != ADT7420_OK) {
 		return ADT7420_I2C_ERROR;
 	}
-
+	// Will set ADT7420 To continuous operation.
 	config &= ~ADT7420_SHUTDOWN_MODE;
-	if (adt7420_write_one_reg(dev, ADT7420_CONFIG, config) != ADT7420_OK) {
+	if (adt7420_set_config(dev, config) != ADT7420_OK) {
 		return ADT7420_I2C_ERROR;
 	}
 	return ADT7420_OK;
@@ -232,12 +232,12 @@ Adt7420_status adt7420_on(adt7420_dev* dev)
 Adt7420_status adt7420_shutdown(adt7420_dev* dev)
 {
 	uint8_t config;
-	if (adt7420_read_one_reg(dev, ADT7420_CONFIG, &config) != ADT7420_OK) {
+	if (adt7420_get_config(dev, &config) != ADT7420_OK) {
 		return ADT7420_I2C_ERROR;
 	}
 
 	config |= ADT7420_SHUTDOWN_MODE;
-	if (adt7420_write_one_reg(dev, ADT7420_CONFIG, config) != ADT7420_OK) {
+	if (adt7420_set_config(dev, config) != ADT7420_OK) {
 		return ADT7420_I2C_ERROR;
 	}
 	return ADT7420_OK;
