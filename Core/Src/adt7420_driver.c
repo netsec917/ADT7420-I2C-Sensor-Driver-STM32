@@ -88,12 +88,12 @@ static inline bool adt7420_parse_params(adt7420_settings* params)
 
 static inline void i2c_start_write(I2C_TypeDef* i2c_ch, uint8_t addr, uint8_t n_bytes)
 {
-	LL_I2C_HandleTransfer(i2c_ch, addr << 1U, ADT7420_REG_SIZE, n_bytes, LL_I2C_MODE_SOFTEND, LL_I2C_GENERATE_START_WRITE);
+	LL_I2C_HandleTransfer(i2c_ch, addr << 1U, LL_I2C_ADDRSLAVE_7BIT, n_bytes, LL_I2C_MODE_SOFTEND, LL_I2C_GENERATE_START_WRITE);
 }
 
 static inline void i2c_start_read(I2C_TypeDef* i2c_ch, uint8_t addr, uint8_t n_bytes)
 {
-	LL_I2C_HandleTransfer(i2c_ch, addr << 1U, ADT7420_REG_SIZE, n_bytes, LL_I2C_MODE_SOFTEND, LL_I2C_GENERATE_RESTART_7BIT_READ);
+	LL_I2C_HandleTransfer(i2c_ch, addr << 1U, LL_I2C_ADDRSLAVE_7BIT, n_bytes, LL_I2C_MODE_SOFTEND, LL_I2C_GENERATE_RESTART_7BIT_READ);
 }
 
 static inline void i2c_stop(I2C_TypeDef* i2c_ch)
